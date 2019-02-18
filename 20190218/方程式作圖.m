@@ -1,0 +1,9 @@
+rang_x_min=.1;
+rang_x_max=10;
+Error_Value_x=1e-4;
+x=rang_x_min:Error_Value_x:rang_x_max;
+F=x.^3-2+log(x);%ln(x)=log(x)
+                %log用法為log'以誰為底'(x),
+                %ex:log以10為底==log10(x)
+plot(x,F)
+grid
