@@ -16,3 +16,5 @@ git push -u origin master
 
 ¤U¸ü
 git clone https://github.com/junyi1997/Matlab.git
+
+git pull --rebase
