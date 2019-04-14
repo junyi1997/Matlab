@@ -40,13 +40,19 @@ C=4
 
 % 3
 % (a)
-
+Ans3_a=zpk(-6,[0 -C -3],1)
+rlocus(Ans3_a)
+[K_3a,p3a]=rlocfind(Ans3_a)
 
 % (b)
-
+Ans3_b=zpk([C C],[0 -2 -3 -4],1)
+rlocus(Ans3_b)
+[K_3b,p3b]=rlocfind(Ans3_b)
 
 % (c)
-
+Ans3_c=zpk([C C*2],[-1i 1i 1 -4],1)
+rlocus(Ans3_c)
+[K_3c,p3c]=rlocfind(Ans3_c)
 
 
 % % 4
