@@ -1,5 +1,5 @@
+clc;clear
 C=4;
-
 % % 1
 % G1_1=tf(4);
 % G2_1=tf(1,[1 1]);
@@ -64,34 +64,65 @@ C=4;
 
 % % 5
 % K=0.76
+% %K=1.015
+% G1_5=tf(K,[1 10]);
+% G2_5=tf(5*C,[1 1.4 0]);
+% T_5=feedback(G1_5*G2_5,1);
+% step(T_5)
 % num5=[5*C*K]
 % den5=[1 11.4 14 5*K*C]
 % A5=tf(num5,den5)
 % roots(den5)
 % step(A5)
 
+% % 6
+% % (a)
+% G1_6=tf(1,[1 12]);
+% G2_6=tf(20,[1 0]);
+% H_6=tf([0.2 0],1);
+% G3_6=C+10;
+% G4_6=feedback(G1_6*G2_6,H_6);
+% Ans6_a=feedback(G3_6*G4_6,1)
+% % (b)
+% [num_6,def_6]=tfdata(Ans6_a,'v')
+% wn_6=sqrt(def_6(3))
+% z_6=def_6(2)/(2*wn_6)
+% step(Ans6_a)
 
 % % 7
 % % 7(a)
-% Ans7_a=tf(conv(C,poly([-2 -3])),poly([-1 -4 -5 -6]))
+% num_7a=C*poly([-2 -3])
+% def_7a=poly([-1 -4 -5 -6])
+% G7=tf(num_7a,def_7a)
+% Ans7_a=feedback(G7,1)
 % % 7(b)
-% [A7_b B7_b C7_b D7_b]=tf2ss(conv(C,poly([-2 -3])),poly([-1 -4 -5 -6]))
+% [num_7b,def_7b]=tfdata(Ans7_a,'v')
+% [A7_b B7_b C7_b D7_b]=tf2ss(num_7b,def_7b)
 % % 7(c)
 % S7=ss(A7_b, B7_b ,C7_b, D7_b);
 % Ans7_c=canon(S7,'modal')
+
 % % 8
 % Pinv=[2 1 -4;1 -2 0;4 6 2];
 % P=inv(Pinv);
-% A8=[2 0 -1;0 4 6;-6 -5 C];
+% A8=[2 0 -1;0 4 6;-6 -5 -C];
 % B8=[2;0;1];
 % C8=[2 5 3];
+% D8=0;
 % Az8=Pinv*A8*P
 % Bz8=Pinv*B8
 % Cz8=C8*P
-% % 9
-% A9=[-5 -5 4;2 0 -2;0 2 -1];
-% B9=[-1; 2 ;-2];
-% C9=[-1 1 C];
+
+% 9
+A9=[-5 -5 4;2 0 -2;0 2 -1];
+B9=[-1; 2 ;-2];
+C9=[-1 1 C];
+D9=0;
+[P_9,D_9]=eig(A9);
+Ap_9=inv(P_9)*A9*P_9
+Bp_9=inv(P_9)*B9
+Cp_9=C9*P_9
+Dp_9=D9
 % 
 % % series(,)¶Í±µ
 % % parallel(,)®√¡p

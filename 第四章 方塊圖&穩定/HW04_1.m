@@ -5,10 +5,10 @@
 % [max_E2,time_E2]=max(E2)
 % t(time_E2)
 
-% ¹Ï3
-plot(T,E3)
-[max_E3,time_E3]=max(E3)
-T(time_E3)
+% % ¹Ï3
+% plot(T,E3)
+% [max_E3,time_E3]=max(E3)
+% T(time_E3)
 
 % % ¹Ï6
 % plot(T,C)
