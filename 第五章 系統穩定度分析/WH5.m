@@ -1,6 +1,6 @@
 clc;clear
 C=4
-K=[1e-3:1e-6:10];
+K=[1e-4:1e-4:100];
 % % 1
 % % (a)
 % d1=[1 -1 4 -4 3*C -2];
@@ -101,17 +101,47 @@ K=[1e-3:1e-6:10];
 
 % 6
 % (a)
+% for n=1:length(K)
+%     den_6a=[1 2.2 1.14 0.193 0.01+0.1*C*0.7*K(n)];
+%     p_6a=roots(den_6a);
+%     r_6a=real(p_6a);
+%     if max(r_6a)>=0
+%         p_6a
+%         K_6a=K(n)
+%         break
+%     end
+% end
+% Ans6_a=tf(C*0.7*0.1,conv(poly([-0.4 -0.1]),[1 1.7 0.25]))
+% rlocus(Ans6_a)
+%rlocfind(Ans6_a)
+
+% (b)
+% for n=1:length(K)
+%     den_6b=[1 130 3229 23480+(C*K(n)) 58000+(6.01*C*K(n)) 0.06*C*K(n)];
+%     p_6b=roots(den_6b);
+%     r_6b=real(p_6b);
+%     if max(r_6b)>=0
+%         p_6b
+%         K_6b=K(n)
+%         break
+%     end
+% end
+% Ans6_b=tf(C*poly([-0.01 -6]),conv(poly([0 -20 -100]),[1 10 29]))
+% rlocus(Ans6_b)
+%rlocfind(Ans6_b)
+
+% (c)
 for n=1:length(K)
-    den_6a=[1 2.2 1.14 0.193 0.01+0.1*C*0.7*K(n)];
-    p_6a=roots(den_6a);
-    r_6a=real(p_6a);
-    if max(r_6a)>=0
-        p_6a
-        K_6a=K(n)
+    den_6c=[1 162.1 6916 75690 507500+(1e5*K(n)) 50000+(6.6e5*K(n)) 3.6e5*K(n)];
+    p_6c=roots(den_6c);
+    r_6c=real(p_6c);
+    if max(r_6c)>=0
+        p_6c
+        K_6c=K(n)
         break
     end
 end
-% Ans6_a=tf(C*0.7*0.1,conv(poly([-0.4 -0.1]),[1 1.7 0.25]))
-% rlocus(-Ans6_a)
-% rlocfind(Ans6_a)
-
+ng6_3=200*500*poly([-0.6 -6])
+Ans6_c=tf(200*500*poly([-0.6 -6]),conv(poly([-0.1 -100 0 -C]),[1 12 100]))
+rlocus(Ans6_c)
+%rlocfind(Ans6_c)
