@@ -77,32 +77,24 @@ C=4
 % SG_3b=minreal(S1_3b*T_3b);
 % Kv_3b=dcgain(SG_3b);
 % ess_Ramp_3b=5/Kv_3b
-
-% (c)圖四
-G1_3c=tf([10 100],[1 2 0]);
-H1_3c=tf([1 C],1);
-T_3c=feedback(G1_3c,H1_3c);
+% 圖四圖五皆無單位負回授，故公式無法使用
+% 4
+G1_4=tf([1 7],poly([0 -4 -8 -12]));
+G2_4=tf(5*poly([-9 -13]),poly([-10 -32 -64]));
+H1_4=C;
+H2_4=tf(1,[1 3]);
+G3_4=feedback(G2_4,H1_4);
+T_4=feedback(G1_4*G3_4,H2_4);
 %STEP
-Kp_3c=dcgain(T_3c);
-ess_Step_3c=5/(1+Kp_3c)
+Kp_4=dcgain(T_4)
+ess_Step_4=30/(1+Kp_4)
 %Ramp
-S1_3c=tf([1 0],1);
-SG_3c=minreal(S1_3c*T_3c);
-Kv_3c=dcgain(SG_3c);
-ess_Ramp_3c=5/Kv_3c
-
-% % (d)圖五
-% G1_3d=20;
-% G2_3d=tf([1 4],poly([-5 -8]));
-% G3_3d=10;
-% H1_3d=C;
-% G4_3d=feedback(G2_3d,H1_3d);
-% T_3d=tf(G1_3d*G3_3d*G4_3d)
-% %STEP
-% Kp_3d=dcgain(T_3d);
-% ess_Step_3d=5/(1+Kp_3d)
-% %Ramp
-% S1_3d=tf([1 0],1);
-% SG_3d=minreal(S1_3d*T_3d);
-% Kv_3d=dcgain(SG_3d);
-% ess_Ramp_3d=5/Kv_3da
+S1_4=tf([1 0],1);
+SG_4=minreal(S1_4*T_4);
+Kv_4=dcgain(SG_4)
+ess_Ramp_4=30/Kv_4
+%Parabolic
+S2_4=tf([1 0 0],1);
+S2G_4=minreal(S2_4*T_4);
+Ka_4=dcgain(S2G_4)
+ess_Parabolic_4=60/Ka_4
