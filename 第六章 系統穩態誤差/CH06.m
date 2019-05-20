@@ -1,5 +1,5 @@
 clc;clear
-C=50
+C=4
 % 1
 % (a)
 % G_1a=tf(conv(20,poly([-3 -C -8])),conv([1 0 0],poly([-2 -15])));
@@ -47,27 +47,62 @@ C=50
 % Kp_2=dcgain(G_2)
 % ess_step_2=15/(1+Kp_2)
 
-% 3
-% (a)圖二
-G1_3a=tf(1,[1 1 0 0])
-G2_3a=tf(C,[1 3 0 0])
-H1_3a=tf(1,[1 0])
-G3_3a=feedback(G1_3a,H1_3a)
-T_3a=tf(G3_3a*G2_3a,1)
-% (b)圖三
-G1_3b=C
-G2_3b=tf(10,poly([0 -1 -3 -4]))
-H1_3b=tf([2 0],1)
-G3_3b=feedback(G2_3b,H1_3b)
-T_3b=tf(G1_3b*G3_3b,1)
+% % 3
+% % (a)圖二
+% G1_3a=tf(1,[1 1 0 0])
+% G2_3a=tf(C,[1 3 0 0])
+% H1_3a=tf(1,[1 0])
+% G3_3a=feedback(G1_3a,H1_3a)
+% T_3a=tf(G3_3a*G2_3a,1)
+% %STEP
+% Kp_3a=dcgain(T_3a)
+% ess_Step_3a=5/(1+Kp_3a)
+% %Ramp
+% S1_3a=tf([1 0],1)
+% SG_3a=minreal(S1_3a*T_3a)
+% Kv_3a=dcgain(SG_3a)
+% ess_Ramp_3a=5/Kv_3a
+
+% % (b)圖三
+% G1_3b=C;
+% G2_3b=tf(10,poly([0 -1 -3 -4]));
+% H1_3b=tf([2 0],1);
+% G3_3b=feedback(G2_3b,H1_3b);
+% T_3b=tf(G1_3b*G3_3b,1)
+% %STEP
+% Kp_3b=dcgain(T_3b);
+% ess_Step_3b=5/(1+Kp_3b)
+% %Ramp
+% S1_3b=tf([1 0],1);
+% SG_3b=minreal(S1_3b*T_3b);
+% Kv_3b=dcgain(SG_3b);
+% ess_Ramp_3b=5/Kv_3b
+
 % (c)圖四
-G1_3c=tf([10 100],[1 2 0])
-H1_3c=tf([1 C],1)
-T_3c=feedback(G1_3c,H1_3c)
-% (d)圖五
-G1_3d=20
-G2_3d=tf([1 4],poly([-5 -8]))
-G3_3d=10
-H1_3d=C
-G4_3d=feedback(G2_3d,H1_3d)
-T_3d=tf(G1_3d*G3_3d*G4_3d)
+G1_3c=tf([10 100],[1 2 0]);
+H1_3c=tf([1 C],1);
+T_3c=feedback(G1_3c,H1_3c);
+%STEP
+Kp_3c=dcgain(T_3c);
+ess_Step_3c=5/(1+Kp_3c)
+%Ramp
+S1_3c=tf([1 0],1);
+SG_3c=minreal(S1_3c*T_3c);
+Kv_3c=dcgain(SG_3c);
+ess_Ramp_3c=5/Kv_3c
+
+% % (d)圖五
+% G1_3d=20;
+% G2_3d=tf([1 4],poly([-5 -8]));
+% G3_3d=10;
+% H1_3d=C;
+% G4_3d=feedback(G2_3d,H1_3d);
+% T_3d=tf(G1_3d*G3_3d*G4_3d)
+% %STEP
+% Kp_3d=dcgain(T_3d);
+% ess_Step_3d=5/(1+Kp_3d)
+% %Ramp
+% S1_3d=tf([1 0],1);
+% SG_3d=minreal(S1_3d*T_3d);
+% Kv_3d=dcgain(SG_3d);
+% ess_Ramp_3d=5/Kv_3da
